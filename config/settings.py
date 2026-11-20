@@ -43,19 +43,73 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users',
-    'buses',
     'rest_framework',
     'drf_spectacular',
-
-
+    'users',
+    'fleet',
+    'routes',
+    'trips',
+    'tracking',
+    'notifications',
 ]
+
+AUTH_USER_MODEL = 'users.User'
+
+JAZZMIN_SETTINGS = {
+    'site_title': 'Ferry Admin',
+    'site_header': 'Ferry Management',
+    'site_brand': 'Ferry Admin',
+    'welcome_sign': 'Ferry Management System',
+    'copyright': 'Ferry Management',
+    'search_model': ['users.User', 'fleet.Vehicle', 'trips.Trip'],
+    'topmenu_links': [
+        {'name': 'Home', 'url': 'admin:index', 'permissions': ['auth.view_user']},
+    ],
+    'show_sidebar': True,
+    'navigation_expanded': True,
+    'icons': {
+        'auth': 'fas fa-users-cog',
+        'users.User': 'fas fa-user',
+        'users.EmployeeProfile': 'fas fa-id-badge',
+        'users.DriverProfile': 'fas fa-id-card',
+        'fleet.Vehicle': 'fas fa-bus',
+        'routes.Route': 'fas fa-route',
+        'routes.RouteStop': 'fas fa-map-marker-alt',
+        'trips.Trip': 'fas fa-calendar-day',
+        'trips.TripStop': 'fas fa-map-pin',
+        'trips.PickupPreference': 'fas fa-star',
+        'trips.PickupSkip': 'fas fa-user-slash',
+        'trips.PickupRequest': 'fas fa-hand-paper',
+        'trips.PickupRequestEvent': 'fas fa-history',
+        'trips.EtaRecord': 'fas fa-clock',
+        'tracking.VehicleLocation': 'fas fa-satellite',
+        'tracking.LocationSharingSession': 'fas fa-share-alt',
+        'tracking.EmployeeLocation': 'fas fa-street-view',
+        'notifications.Notification': 'fas fa-bell',
+    },
+    'order_with_respect_to': [
+        'users',
+        'fleet',
+        'routes',
+        'trips',
+        'tracking',
+        'notifications',
+    ],
+}
+
+JAZZMIN_UI_TWEAKS = {
+    'theme': 'flatly',
+    'dark_mode_theme': 'darkly',
+    'navbar': 'navbar-dark',
+    'sidebar': 'sidebar-dark-primary',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
